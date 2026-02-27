@@ -6,10 +6,11 @@ class Personagem {
     constructor(nome, poderDeAtaque) {
         this.nome = nome;
         this.poderDeAtaque = poderDeAtaque
+        this.#vida = 100;
     }
 
 
-    // ENCAPSULAMENTO 
+    // ENCAPSULAMENTO
 
   receberDano(valor) {
     if (valor <= 0) {
@@ -38,37 +39,38 @@ class Personagem {
 
 }
 
-const heroi = new Personagem ("Artemis", 20);
+const heroi = new Personagem ("Artemis", 60);
 
 console.log(heroi.exibirStatus());
 
+console.log(heroi.receberDano(20));
+console.log(heroi.exibirStatus());
 console.log(heroi.receberDano(30));
 console.log(heroi.exibirStatus());
-console.log(heroi.receberDano(50));
-console.log(heroi.exibirStatus());
 
-// HERANÇA 
+// HERANÇA
 // GUERREIRO
 
 class guerreiro extends Personagem{
     forcaFisica;
-    
+
     constructor (nome, poderDeAtaque, forcaFisica) {
         super(nome, poderDeAtaque);
         this.forcaFisica = forcaFisica;
     }
 
     atacar(alvo) {
-        const dano = this.poderDeAtaque + this.forcaFisica 
+        const dano = this.poderDeAtaque + this.forcaFisica
         console.log(`${this.nome} desferiu um golpe`);
         console.log(alvo.receberDano(dano));
     }
-}    
-class mago extends Personagem{
+}
+class mago extends Personagem {
     forcaFisica;
-    
+
     constructor (nome, poderDeAtaque, forcaFisica) {
         super(nome, poderDeAtaque);
+        this.poderMagico = 20;
         this.poderMagico = (this.poderMagico * 2);
     }
 
@@ -78,9 +80,9 @@ class mago extends Personagem{
         console.log(alvo.receberDano(dano));
     }
 
-}    
+}
 
-const Guerreiro = new guerreiro ("Apolo", 30, 40);
+const Guerreiro = new guerreiro ("Apolo", 50, 40);
 const Mago = new mago ("Dedálo", 40, 20);
 
 console.log(Guerreiro.exibirStatus());
@@ -92,11 +94,10 @@ console.log(Guerreiro.exibirStatus());
 //Console de polimorfismo
 
 
-// Ataques 
+// Ataques
 Guerreiro.atacar(Mago);
 Mago.atacar(Guerreiro);
 
+
 console.log(Guerreiro.exibirStatus());
 console.log(Mago.exibirStatus())
-
-
